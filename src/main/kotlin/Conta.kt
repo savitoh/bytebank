@@ -1,17 +1,23 @@
-class Conta(private val titular: String, private val numero: Int, private var saldo: Double) {
+class Conta(
+    private val titular: String,
+    private val numero: Int
+) {
+    private var saldo = 0.0
 
     fun depositar(valor: Double) {
-        this.saldo += valor
+        if (valor > 0) {
+            this.saldo += valor
+        }
     }
 
     fun sacar(valor: Double) {
-        if(this.saldo >= valor)  {
+        if (this.saldo >= valor) {
             this.saldo -= valor
         }
     }
 
-    fun transfere(valor: Double, destino: Conta) : Boolean {
-        if(this.saldo >= valor) {
+    fun transfere(valor: Double, destino: Conta): Boolean {
+        if (this.saldo >= valor) {
             this.saldo -= valor
             destino.depositar(valor)
             return true
@@ -19,9 +25,7 @@ class Conta(private val titular: String, private val numero: Int, private var sa
         return false
     }
 
-    override fun toString(): String {
-        return "Conta(titular='$titular', numero=$numero, saldo=$saldo)"
-    }
+    override fun toString() = "Conta(titular='$titular', numero=$numero, saldo=$saldo)"
 
 
 }
