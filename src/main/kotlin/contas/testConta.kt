@@ -1,6 +1,6 @@
 package contas
 
-fun main() {
+fun testConta() {
     println("Bem vindo ao ByteBank!!!")
 
     val contaSavio = ContaPoupanca(
