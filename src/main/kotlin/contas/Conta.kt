@@ -1,4 +1,6 @@
-class Conta(
+package contas
+
+open class Conta(
     private val titular: String,
     private val numero: Int
 ) {
@@ -10,7 +12,7 @@ class Conta(
         }
     }
 
-    fun sacar(valor: Double) {
+    open fun sacar(valor: Double) {
         if (this.saldo >= valor) {
             this.saldo -= valor
         }
@@ -25,7 +27,7 @@ class Conta(
         return false
     }
 
-    override fun toString() = "Conta(titular='$titular', numero=$numero, saldo=$saldo)"
+    override fun toString() = "contas.Conta(titular='$titular', numero=$numero, saldo=$saldo)"
 
 
 }
