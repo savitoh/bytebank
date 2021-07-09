@@ -1,12 +1,32 @@
 fun main() {
-    println("Bem vindo ao ByteBank!!!")
 
-    val contaSavio = Conta(titular= "Sávio", numero = 1)
-    val contaLeticia = Conta(titular = "Leticia", numero = 2)
 
-    contaSavio.depositar(valor = 30.00)
-    contaSavio.transfere(valor = 10.00, destino = contaLeticia)
+    val savio = Funcionario(
+        nome = "Sávio",
+        cpf = "0.0.0.0",
+        salario = 2000.00
+    )
+    println("$savio")
 
-    println("Conta Sávio: $contaSavio")
-    println("Conta Leticia: $contaLeticia")
+    val rafael = Gerente(
+        nome = "Rafael",
+        cpf = "1.1.1.1",
+        salario = 3000.00,
+        senha = "senha"
+    )
+
+    val marcelo = Diretor(
+        nome = "Marecelo",
+        cpf = "2.2.2.2",
+        salario = 4000.00,
+        senha = "123",
+        plr = 500.00
+    )
+
+    val calculadora = CalculadoraBonificacao()
+    calculadora.registra(savio)
+    calculadora.registra(rafael)
+    calculadora.registra(marcelo)
+
+    println("Total bonificacao: ${calculadora.total}")
 }
