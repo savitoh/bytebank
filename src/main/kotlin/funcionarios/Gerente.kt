@@ -1,3 +1,5 @@
+package funcionarios
+
 class Gerente(
     nome: String,
     cpf: String,
@@ -13,6 +15,6 @@ class Gerente(
 
     override fun getBonificacao() = super.getBonificacao() + salario
 
-    override fun toString() = "Gerente(senha='$senha') ${super.toString()}"
+    override fun toString() = "funcionarios.Gerente(senha='$senha') ${super.toString()}"
 
 }

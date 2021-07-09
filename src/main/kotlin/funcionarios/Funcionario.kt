@@ -1,3 +1,5 @@
+package funcionarios
+
 open class Funcionario(
     private val nome: String,
     private val cpf: String,
