@@ -14,6 +14,6 @@ class Gerente(
     senha = senha
 ) {
 
-    override fun getBonificacao() =  salario
+    override fun getBonificacao() = salario
 
 }

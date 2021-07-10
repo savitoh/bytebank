@@ -6,7 +6,7 @@ abstract class Funcionario(
     val salario: Double
 ) {
 
-    abstract fun getBonificacao() : Double
+    abstract fun getBonificacao(): Double
 
     override fun toString() = "Funcionário(nome='$nome', cpf='$cpf', salário=$salario)"
 

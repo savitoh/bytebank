@@ -15,6 +15,6 @@ class Diretor(
     senha = senha
 ) {
 
-    override fun getBonificacao() =  salario + plr
+    override fun getBonificacao() = salario + plr
 
 }
