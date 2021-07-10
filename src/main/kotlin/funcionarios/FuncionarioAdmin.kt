@@ -1,5 +1,7 @@
 package funcionarios
 
+import auth.Autenticavel
+
 abstract class FuncionarioAdmin(
     nome: String,
     cpf: String,
@@ -9,8 +11,8 @@ abstract class FuncionarioAdmin(
     nome = nome,
     cpf = cpf,
     salario = salario
-) {
+), Autenticavel {
 
-    fun autentica(senha: String) = senha == this.senha
+    override fun autentica(senha: String) = senha == this.senha
 
 }

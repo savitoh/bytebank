@@ -1,5 +1,7 @@
 package funcionarios
 
+import auth.Autenticavel
+
 class Diretor(
     nome: String,
     cpf: String,
