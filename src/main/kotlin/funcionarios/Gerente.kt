@@ -4,14 +4,13 @@ class Gerente(
     nome: String,
     cpf: String,
     salario: Double,
-    private val senha: String
-) : Funcionario(
+    senha: String
+) : FuncionarioAdmin(
     nome = nome,
     cpf = cpf,
-    salario = salario
+    salario = salario,
+    senha = senha
 ) {
-
-    fun autenticacao(senha: String) = senha == this.senha
 
     override fun getBonificacao() =  salario
 
