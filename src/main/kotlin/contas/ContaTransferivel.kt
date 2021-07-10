@@ -8,7 +8,7 @@ abstract class ContaTransferivel(
     numero = numero
 ) {
 
-    fun transfere(valor: Double, destino: Conta): Boolean {
+    fun transfere(valor: Double, destino: ContaTransferivel): Boolean {
         if (this.saldo >= valor) {
             this.saldo -= valor
             destino.depositar(valor)
