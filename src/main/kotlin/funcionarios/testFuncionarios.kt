@@ -1,7 +1,8 @@
 package funcionarios
 
 fun testFuncionarios() {
-    val savio = Funcionario(
+
+    val savio = Analista(
         nome = "Sávio",
         cpf = "0.0.0.0",
         salario = 2000.00
