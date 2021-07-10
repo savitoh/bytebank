@@ -13,8 +13,6 @@ class Gerente(
 
     fun autenticacao(senha: String) = senha == this.senha
 
-    override fun getBonificacao() = super.getBonificacao() + salario
-
-    override fun toString() = "funcionarios.Gerente(senha='$senha') ${super.toString()}"
+    override fun getBonificacao() =  salario
 
 }

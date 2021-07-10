@@ -12,6 +12,8 @@ class Diretor(
     salario = salario
 ) {
 
-    override fun getBonificacao() = super.getBonificacao() + salario + plr
+    fun autentica(senha: String) = senha == this.senha
+
+    override fun getBonificacao() =  salario + plr
 
 }
