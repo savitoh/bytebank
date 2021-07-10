@@ -1,6 +1,7 @@
 package contas
 
-const val TAXA_SAQUE = 0.1
+import contas.ContaCorrente.TAXAS.SAQUE
+
 
 class ContaCorrente(
     titular: String,
@@ -9,8 +10,13 @@ class ContaCorrente(
     titular = titular,
     numero = numero
 ) {
+
+    private object TAXAS {
+        const val SAQUE = 0.1
+    }
+
     override fun sacar(valor: Double) {
-        val valorComTaxa = valor + TAXA_SAQUE
+        val valorComTaxa = valor + SAQUE
         if(this.saldo >= valorComTaxa) {
             this.saldo -= valorComTaxa
         }
