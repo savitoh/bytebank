@@ -15,15 +15,6 @@ abstract class Conta(
 
     abstract fun sacar(valor: Double)
 
-    fun transfere(valor: Double, destino: Conta): Boolean {
-        if (this.saldo >= valor) {
-            this.saldo -= valor
-            destino.depositar(valor)
-            return true
-        }
-        return false
-    }
-
     override fun toString() = "contas.Conta(titular='$titular', numero=$numero, saldo=$saldo)"
 
 

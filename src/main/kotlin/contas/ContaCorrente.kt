@@ -6,7 +6,7 @@ import contas.ContaCorrente.TAXAS.SAQUE
 class ContaCorrente(
     titular: String,
     numero: Int
-) : Conta(
+) : ContaTransferivel(
     titular = titular,
     numero = numero
 ) {
