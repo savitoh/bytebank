@@ -1,10 +1,11 @@
 package contas
 
-open class Conta(
+abstract class Conta(
     private val titular: String,
     private val numero: Int
 ) {
-    private var saldo = 0.0
+    var saldo = 0.0
+        protected set
 
     fun depositar(valor: Double) {
         if (valor > 0) {
@@ -12,11 +13,7 @@ open class Conta(
         }
     }
 
-    open fun sacar(valor: Double) {
-        if (this.saldo >= valor) {
-            this.saldo -= valor
-        }
-    }
+    abstract fun sacar(valor: Double)
 
     fun transfere(valor: Double, destino: Conta): Boolean {
         if (this.saldo >= valor) {
