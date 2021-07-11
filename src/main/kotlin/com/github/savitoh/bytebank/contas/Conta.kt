@@ -1,7 +1,9 @@
 package com.github.savitoh.bytebank.contas
 
+import com.github.savitoh.bytebank.clientes.Cliente
+
 abstract class Conta(
-    private val titular: String,
+    private val titular: Cliente,
     private val numero: Int
 ) {
     var saldo = 0.0

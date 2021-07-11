@@ -1,7 +1,9 @@
 package com.github.savitoh.bytebank.contas
 
+import com.github.savitoh.bytebank.clientes.Cliente
+
 class ContaPoupanca(
-    titular: String,
+    titular: Cliente,
     numero: Int
 ) : ContaTransferivel(
     titular = titular,

@@ -1,10 +1,11 @@
 package com.github.savitoh.bytebank.contas
 
+import com.github.savitoh.bytebank.clientes.Cliente
 import com.github.savitoh.bytebank.contas.ContaCorrente.CONSTS.TAXA_SAQUE
 
 
 class ContaCorrente(
-    titular: String,
+    titular: Cliente,
     numero: Int
 ) : ContaTransferivel(
     titular = titular,

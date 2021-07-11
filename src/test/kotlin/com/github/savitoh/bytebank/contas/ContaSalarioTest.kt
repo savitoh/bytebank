@@ -1,16 +1,18 @@
 package com.github.savitoh.bytebank.contas
 
+import com.github.savitoh.bytebank.clientes.Cliente
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 internal class ContaSalarioTest {
 
+    private val titular = Cliente(nome = "Sávio", cpf = "111.111.111-11", senha = "123")
     private lateinit var contaSalario: ContaSalario
 
     @BeforeEach
     internal fun setUp() {
-        contaSalario = ContaSalario(titular = "Sávio", numero = 1)
+        contaSalario = ContaSalario(titular = titular, numero = 1)
     }
 
     @Test

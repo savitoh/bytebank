@@ -1,16 +1,18 @@
 package com.github.savitoh.bytebank.contas
 
+import com.github.savitoh.bytebank.clientes.Cliente
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 internal class ContaPoupancaTest {
 
+    private val titular = Cliente(nome = "Sávio", cpf = "111.111.111-11", senha = "123")
     private lateinit var contaPoupanca: ContaPoupanca
 
     @BeforeEach
     internal fun setUp() {
-        contaPoupanca = ContaPoupanca(titular = "Sávio", numero = 1)
+        contaPoupanca = ContaPoupanca(titular = titular, numero = 1)
     }
 
     @Test
@@ -68,7 +70,8 @@ internal class ContaPoupancaTest {
         val valorDeposito = 100.00
         val valorTransferencia = 10.00
         contaPoupanca.depositar(valorDeposito)
-        val contaDestino = ContaCorrente(titular = "Leticia", numero = 2)
+        val titularContaDestino = Cliente(nome = "Leticia", cpf = "222.222.222.22", senha = "senha")
+        val contaDestino = ContaCorrente(titular = titularContaDestino, numero = 2)
 
         val transferido = contaPoupanca.transfere(valorTransferencia, contaDestino)
 
@@ -82,7 +85,8 @@ internal class ContaPoupancaTest {
         val valorDeposito = 100.00
         val valorTransferencia = 110.00
         contaPoupanca.depositar(valorDeposito)
-        val contaDestino = ContaCorrente(titular = "Leticia", numero = 2)
+        val titularContaDestino = Cliente(nome = "Leticia", cpf = "222.222.222.22", senha = "senha")
+        val contaDestino = ContaCorrente(titular = titularContaDestino, numero = 2)
 
         val transferido = contaPoupanca.transfere(valorTransferencia, contaDestino)
 

@@ -1,5 +1,6 @@
 package com.github.savitoh.bytebank.contas
 
+import com.github.savitoh.bytebank.clientes.Cliente
 import com.github.savitoh.bytebank.contas.ContaCorrenteTest.CONSTS.EPSILION_SAQUE
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -13,11 +14,12 @@ internal class ContaCorrenteTest {
         const val EPSILION_SAQUE = 0.0001
     }
 
+    private val titular = Cliente(nome = "Sávio", cpf = "111.111.111-11", senha = "123")
     private lateinit var contaCorrente: ContaCorrente
 
     @BeforeEach
     internal fun setUp() {
-        contaCorrente = ContaCorrente(titular = "Sávio", numero = 1)
+        contaCorrente = ContaCorrente(titular = titular, numero = 1)
     }
 
     @Test
@@ -75,7 +77,8 @@ internal class ContaCorrenteTest {
         val valorDeposito = 100.00
         val valorTransferencia = 10.00
         contaCorrente.depositar(valorDeposito)
-        val contaDestino = ContaPoupanca(titular = "Leticia", numero = 2)
+        val titularContaDestino = Cliente(nome = "Leticia", cpf = "222.222.222.22", senha = "senha")
+        val contaDestino = ContaPoupanca(titular = titularContaDestino, numero = 2)
 
         val transferido = contaCorrente.transfere(valorTransferencia, contaDestino)
 
@@ -89,7 +92,8 @@ internal class ContaCorrenteTest {
         val valorDeposito = 100.00
         val valorTransferencia = 110.00
         contaCorrente.depositar(valorDeposito)
-        val contaDestino = ContaPoupanca(titular = "Leticia", numero = 2)
+        val titularContaDestino = Cliente(nome = "Leticia", cpf = "222.222.222.22", senha = "senha")
+        val contaDestino = ContaPoupanca(titular = titularContaDestino, numero = 2)
 
         val transferido = contaCorrente.transfere(valorTransferencia, contaDestino)
 
