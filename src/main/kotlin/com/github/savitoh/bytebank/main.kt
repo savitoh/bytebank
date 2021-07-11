@@ -1,7 +1,7 @@
-import com.github.savitoh.bytebank.contas.testConta
-import com.github.savitoh.bytebank.funcionarios.*
+package com.github.savitoh.bytebank
+
+import com.github.savitoh.bytebank.funcionarios.testFuncionarios
 
 fun main() {
-    testConta()
     testFuncionarios()
 }
