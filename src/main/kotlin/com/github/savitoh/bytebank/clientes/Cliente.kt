@@ -1,4 +1,4 @@
-package com.github.savitoh.bytebank
+package com.github.savitoh.bytebank.clientes
 
 import com.github.savitoh.bytebank.auth.Autenticavel
 
