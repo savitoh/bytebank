@@ -13,7 +13,7 @@ abstract class ContaTransferivel(
 
     fun transfere(valor: Double, destino: ContaTransferivel) {
         if(this.saldo < valor)  {
-            throw SaldoInsuficienteException()
+            throw SaldoInsuficienteException("O saldo é insuficiente. Saldo atual: ${this.saldo}. Valor a ser transferido: $valor")
         }
         this.saldo -= valor
         destino.depositar(valor)

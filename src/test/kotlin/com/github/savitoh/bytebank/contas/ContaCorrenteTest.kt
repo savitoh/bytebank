@@ -95,12 +95,12 @@ internal class ContaCorrenteTest {
         val contaDestino = ContaPoupanca(titular = titularContaDestino, numero = 2)
 
 
-        assertFailsWith<SaldoInsuficienteException> (
-            message = "O saldo é insuficiente.",
-            block = {
-                contaCorrente.transfere(valorTransferencia, contaDestino)
-            }
+        val exception = assertFailsWith<SaldoInsuficienteException> (
+            block = { contaCorrente.transfere(valorTransferencia, contaDestino) }
         )
+
+        val mensagemEsperada = "O saldo é insuficiente. Saldo atual: ${contaCorrente.saldo}. Valor a ser transferido: $valorTransferencia"
+        assertEquals(mensagemEsperada, exception.message)
         assertEquals(0.0, contaDestino.saldo)
         assertEquals(valorDeposito, contaCorrente.saldo)
     }
