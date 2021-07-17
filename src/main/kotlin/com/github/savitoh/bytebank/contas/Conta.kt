@@ -1,11 +1,12 @@
 package com.github.savitoh.bytebank.contas
 
+import com.github.savitoh.bytebank.auth.Autenticavel
 import com.github.savitoh.bytebank.clientes.Cliente
 
 abstract class Conta(
     private val titular: Cliente,
     private val numero: Int
-) {
+) : Autenticavel by titular {
     var saldo = 0.0
         protected set
 

@@ -2,6 +2,7 @@ package com.github.savitoh.bytebank.contas
 
 import com.github.savitoh.bytebank.clientes.Cliente
 import com.github.savitoh.bytebank.contas.ContaCorrenteTest.CONSTS.EPSILION_SAQUE
+import com.github.savitoh.bytebank.contas.exceptions.FalhaAutenticacaoException
 import com.github.savitoh.bytebank.contas.exceptions.SaldoInsuficienteException
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -14,7 +15,8 @@ internal class ContaCorrenteTest {
         const val EPSILION_SAQUE = 0.0001
     }
 
-    private val titular = Cliente(nome = "Sávio", cpf = "111.111.111-11", senha = "123")
+    private val senhaTitular = "123"
+    private val titular = Cliente(nome = "Sávio", cpf = "111.111.111-11", senha = senhaTitular)
     private lateinit var contaCorrente: ContaCorrente
 
     @BeforeEach
@@ -80,7 +82,7 @@ internal class ContaCorrenteTest {
         val titularContaDestino = Cliente(nome = "Leticia", cpf = "222.222.222.22", senha = "senha")
         val contaDestino = ContaPoupanca(titular = titularContaDestino, numero = 2)
 
-        contaCorrente.transfere(valorTransferencia, contaDestino)
+        contaCorrente.transfere(senhaTitular, valorTransferencia, contaDestino)
 
         assertEquals(valorTransferencia, contaDestino.saldo)
         assertEquals(90.00, contaCorrente.saldo)
@@ -95,12 +97,31 @@ internal class ContaCorrenteTest {
         val contaDestino = ContaPoupanca(titular = titularContaDestino, numero = 2)
 
 
-        val exception = assertFailsWith<SaldoInsuficienteException> (
-            block = { contaCorrente.transfere(valorTransferencia, contaDestino) }
+        val exception = assertFailsWith<SaldoInsuficienteException>(
+            block = { contaCorrente.transfere(senhaTitular, valorTransferencia, contaDestino) }
         )
 
-        val mensagemEsperada = "O saldo é insuficiente. Saldo atual: ${contaCorrente.saldo}. Valor a ser transferido: $valorTransferencia"
+        val mensagemEsperada =
+            "O saldo é insuficiente. Saldo atual: ${contaCorrente.saldo}. Valor a ser transferido: $valorTransferencia"
         assertEquals(mensagemEsperada, exception.message)
+        assertEquals(0.0, contaDestino.saldo)
+        assertEquals(valorDeposito, contaCorrente.saldo)
+    }
+
+    @Test
+    fun nao_deve_permitir_transferir_quando_falhar_autenticacao() {
+        val valorDeposito = 100.00
+        val valorTransferencia = 10.00
+        val senhaTitularFalsa = "456"
+        contaCorrente.depositar(valorDeposito)
+        val titularContaDestino = Cliente(nome = "Leticia", cpf = "222.222.222.22", senha = "senha")
+        val contaDestino = ContaPoupanca(titular = titularContaDestino, numero = 2)
+
+        val exception = assertFailsWith<FalhaAutenticacaoException>(
+            block = { contaCorrente.transfere(senha = senhaTitularFalsa, valor = valorTransferencia, destino = contaDestino) }
+        )
+
+        assertEquals("Falha na autenticação", exception.message)
         assertEquals(0.0, contaDestino.saldo)
         assertEquals(valorDeposito, contaCorrente.saldo)
     }
