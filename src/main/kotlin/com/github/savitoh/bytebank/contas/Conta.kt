@@ -9,6 +9,17 @@ abstract class Conta(
     var saldo = 0.0
         protected set
 
+    companion object {
+        var total = 0
+            private set
+    }
+
+    init {
+        total++
+    }
+
+    fun getTotal() = total
+
     fun depositar(valor: Double) {
         if (valor > 0) {
             this.saldo += valor
@@ -17,7 +28,8 @@ abstract class Conta(
 
     abstract fun sacar(valor: Double)
 
-    override fun toString() = "com.github.savitoh.bytebank.contas.Conta(titular='$titular', numero=$numero, saldo=$saldo)"
+    override fun toString() =
+        "com.github.savitoh.bytebank.contas.Conta(titular='$titular', numero=$numero, saldo=$saldo)"
 
 
 }
