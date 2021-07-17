@@ -1,6 +1,7 @@
 package com.github.savitoh.bytebank.contas
 
 import com.github.savitoh.bytebank.clientes.Cliente
+import com.github.savitoh.bytebank.contas.exceptions.SaldoInsuficienteException
 
 abstract class ContaTransferivel(
     titular: Cliente,
@@ -10,12 +11,11 @@ abstract class ContaTransferivel(
     numero = numero
 ) {
 
-    fun transfere(valor: Double, destino: ContaTransferivel): Boolean {
-        if (this.saldo >= valor) {
-            this.saldo -= valor
-            destino.depositar(valor)
-            return true
+    fun transfere(valor: Double, destino: ContaTransferivel) {
+        if(this.saldo < valor)  {
+            throw SaldoInsuficienteException()
         }
-        return false
+        this.saldo -= valor
+        destino.depositar(valor)
     }
 }

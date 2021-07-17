@@ -2,11 +2,11 @@ package com.github.savitoh.bytebank.contas
 
 import com.github.savitoh.bytebank.clientes.Cliente
 import com.github.savitoh.bytebank.contas.ContaCorrenteTest.CONSTS.EPSILION_SAQUE
+import com.github.savitoh.bytebank.contas.exceptions.SaldoInsuficienteException
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertFalse
-import kotlin.test.assertTrue
+import kotlin.test.assertFailsWith
 
 internal class ContaCorrenteTest {
 
@@ -80,9 +80,8 @@ internal class ContaCorrenteTest {
         val titularContaDestino = Cliente(nome = "Leticia", cpf = "222.222.222.22", senha = "senha")
         val contaDestino = ContaPoupanca(titular = titularContaDestino, numero = 2)
 
-        val transferido = contaCorrente.transfere(valorTransferencia, contaDestino)
+        contaCorrente.transfere(valorTransferencia, contaDestino)
 
-        assertTrue { transferido }
         assertEquals(valorTransferencia, contaDestino.saldo)
         assertEquals(90.00, contaCorrente.saldo)
     }
@@ -95,9 +94,13 @@ internal class ContaCorrenteTest {
         val titularContaDestino = Cliente(nome = "Leticia", cpf = "222.222.222.22", senha = "senha")
         val contaDestino = ContaPoupanca(titular = titularContaDestino, numero = 2)
 
-        val transferido = contaCorrente.transfere(valorTransferencia, contaDestino)
 
-        assertFalse { transferido }
+        assertFailsWith<SaldoInsuficienteException> (
+            message = "O saldo é insuficiente.",
+            block = {
+                contaCorrente.transfere(valorTransferencia, contaDestino)
+            }
+        )
         assertEquals(0.0, contaDestino.saldo)
         assertEquals(valorDeposito, contaCorrente.saldo)
     }
