@@ -2,7 +2,7 @@ package com.github.savitoh.bytebank.contas
 
 import com.github.savitoh.bytebank.clientes.Cliente
 import com.github.savitoh.bytebank.contas.ContaCorrenteTest.CONSTS.EPSILION_SAQUE
-import com.github.savitoh.bytebank.contas.exceptions.FalhaAutenticacaoException
+import com.github.savitoh.bytebank.auth.exception.FalhaAutenticacaoException
 import com.github.savitoh.bytebank.contas.exceptions.SaldoInsuficienteException
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

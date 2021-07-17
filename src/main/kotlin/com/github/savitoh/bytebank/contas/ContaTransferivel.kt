@@ -1,7 +1,7 @@
 package com.github.savitoh.bytebank.contas
 
 import com.github.savitoh.bytebank.clientes.Cliente
-import com.github.savitoh.bytebank.contas.exceptions.FalhaAutenticacaoException
+import com.github.savitoh.bytebank.auth.exception.FalhaAutenticacaoException
 import com.github.savitoh.bytebank.contas.exceptions.SaldoInsuficienteException
 
 abstract class ContaTransferivel(
