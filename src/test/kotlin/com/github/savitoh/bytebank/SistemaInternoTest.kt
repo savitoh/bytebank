@@ -20,14 +20,14 @@ internal class SistemaInternoTest {
         sistemaInterno.entra(
             autenticavel = autenticavel,
             senha = autenticavel.senha,
-            resultado = { println("Imprimindo com lamdda expression  $it") }
+            resultado = { println("Imprimindo com lamdda expression. $it") }
         )
     }
 
     @Test
     fun nao_deve_entrar_quando_senha_errada() {
         sistemaInterno.entra(autenticavel = autenticavel, senha = "failSenha") {
-            println("Imprimindo com funcao anonima $it")
+            println("Imprimindo com funcao anonima. $it")
         }
     }
 }
