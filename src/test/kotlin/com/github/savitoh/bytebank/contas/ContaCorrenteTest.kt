@@ -1,8 +1,8 @@
 package com.github.savitoh.bytebank.contas
 
+import com.github.savitoh.bytebank.auth.exception.FalhaAutenticacaoException
 import com.github.savitoh.bytebank.clientes.Cliente
 import com.github.savitoh.bytebank.contas.ContaCorrenteTest.CONSTS.EPSILION_SAQUE
-import com.github.savitoh.bytebank.auth.exception.FalhaAutenticacaoException
 import com.github.savitoh.bytebank.contas.exceptions.SaldoInsuficienteException
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -118,7 +118,11 @@ internal class ContaCorrenteTest {
         val contaDestino = ContaPoupanca(titular = titularContaDestino, numero = 2)
 
         val exception = assertFailsWith<FalhaAutenticacaoException>(
-            block = { contaCorrente.transfere(senha = senhaTitularFalsa, valor = valorTransferencia, destino = contaDestino) }
+            block = {
+                contaCorrente.transfere(senha = senhaTitularFalsa,
+                    valor = valorTransferencia,
+                    destino = contaDestino)
+            }
         )
 
         assertEquals("Falha na autenticação", exception.message)
